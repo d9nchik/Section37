@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+<h3>Student Registration Form</h3>
+<form action="GetParameters"
+      method="get">
+    <!-- Name text fields -->
+    <p>
+        <label>
+            Last Name
+            <input name="lastName" size="20" type="text"/>
+        </label>
+        <label>First Name
+            <input name="firstName" size="20" type="text"/>
+        </label>
+        <label>MI
+            <input name="mi" size="1" type="text"/></label></p>
+    <!-- Gender radio buttons -->
+    <p><label>Gender:
+        <input checked name="gender" type="radio" value="M"/>
+        Male
+        <input name="gender" type="radio" value="F"/> Female</label></p>
+    <!-- Major combo box -->
+    <p><label>Major
+        <select name="major" size="1">
+            <option value="CS">Computer Science</option>
+            <option value="Math">Mathematics</option>
+            <option>English</option>
+            <option>Chinese</option>
+        </select></label><!-- Minor list -->
+        <label>Minor
+            <select multiple name="minor" size="2">
+                <option>Computer Science</option>
+                <option>Mathematics</option>
+                <option>English</option>
+                <option>Chinese</option>
+            </select></label></p>
+    <!-- Hobby check boxes -->
+    <p><label>Hobby:
+        <input name="tennis" type="checkbox"/> Tennis
+        <input name="golf" type="checkbox"/> Golf
+        <input checked name="pingPong" type="checkbox"/>Ping Pong</label>
+    </p>
+    <!-- Remark text area -->
+    <p>Remarks:</p>
+    <p><label>
+<textarea cols="56" name="remarks" rows="3">
+</textarea>
+    </label></p><!-- Submit and Reset buttons -->
+    <p><input type="submit" value="Submit"/>
+        <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

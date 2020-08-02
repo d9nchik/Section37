@@ -11,4 +11,21 @@
         <servlet-name>first</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>form-test</servlet-name>
+        <servlet-class>GetParameters</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>form-test</servlet-name>
+        <url-pattern>/GetParameters</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>timeForm</servlet-name>
+        <servlet-class>TimeForm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>timeForm</servlet-name>
+        <url-pattern>/TimeForm</url-pattern>
+    </servlet-mapping>
 </web-app>
