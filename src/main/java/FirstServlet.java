@@ -1,6 +1,7 @@
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 public class FirstServlet extends HttpServlet {
     /**
@@ -16,16 +17,19 @@ public class FirstServlet extends HttpServlet {
         java.io.PrintWriter out = response.getWriter();
 
         // output your page here
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Servlet</title>");
+        out.println("<!DOCTYPE html>");
+        out.println("<head lang=\"en\">");
+        out.println("<meta charset=\"UTF-8\">");
+        out.println("<title>Current time</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("Hello, Java Servlets");
+        out.print("<p>");
+        out.print(new Date());
+        out.println("</p>");
         out.println("</body>");
         out.println("</html>");
         out.close();
-        System.out.println( "doGet called" );
+        System.out.println("doGet called by: " + request.getRemoteAddr());
     }
 
     public FirstServlet() {
@@ -40,9 +44,11 @@ public class FirstServlet extends HttpServlet {
         System.out.println("init called");
     }
 
-    /** Clean up resources */
+    /**
+     * Clean up resources
+     */
     @Override
     public void destroy() {
-        System.out.println( "destroy called" );
+        System.out.println("destroy called");
     }
 }
