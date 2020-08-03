@@ -1,4 +1,4 @@
-package exercise1;
+package exercise2;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -6,31 +6,38 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FactorialTable extends HttpServlet {
+public class MultiplicationTable extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         resp.setContentType("text/html");
-        try (PrintWriter out = resp.getWriter()) {
+        try (
+                PrintWriter out = resp.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<head lang=\"en\">");
             out.println("<meta charset=\"UTF-8\">");
             out.println(" <link href=\"/simple.css\" rel=\"stylesheet\">");
-            out.println("<title>Factorial Table</title>");
+            out.println("<title>Multiplication Table</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<table>");
+            out.println("<table><thead>");
             out.println("<tr>");
-            out.println("<th>Number</th>");
-            out.println("<th>Factorial</th>");
+            out.println("<th colspan=\"10\">Multiplication Table</th>");
+            out.println("</tr></thead>");
+            out.println("<tr>");
+            out.println("<td></td>");
+            for (int i = 1; i < 10; i++) {
+                out.println("<td>" + i + "</td>");
+            }
             out.println("</tr>");
-            int factorial = 1;
-            for (int i = 0; i < 10; i++) {
+            for (int i = 1; i < 10; i++) {
                 out.println("<tr>");
                 out.println("<td>" + i + "</td>");
-                out.println("<td>" + factorial + "</td>");
+                for (int j = 1; j < 10; j++) {
+                    out.println("<td>" + i * j + "</td>");
+                }
                 out.println("</tr>");
-                factorial *= (i + 1);
             }
+
             out.println("</table>");
             out.println("</body>");
             out.println("</html>");

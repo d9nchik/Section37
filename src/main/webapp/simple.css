@@ -2,7 +2,7 @@ table, td {
     border: 1px solid #333;
 }
 
-th, tfoot {
+th, tfoot, thead {
     background-color: #333;
     color: #fff;
 }

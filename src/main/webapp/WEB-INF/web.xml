@@ -37,4 +37,13 @@
         <servlet-name>exercise1</servlet-name>
         <url-pattern>/exercise1</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise2</servlet-name>
+        <servlet-class>exercise2.MultiplicationTable</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise2</servlet-name>
+        <url-pattern>/exercise2</url-pattern>
+    </servlet-mapping>
 </web-app>
