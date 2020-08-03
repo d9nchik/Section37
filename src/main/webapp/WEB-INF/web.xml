@@ -28,4 +28,13 @@
         <servlet-name>timeForm</servlet-name>
         <url-pattern>/TimeForm</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise1</servlet-name>
+        <servlet-class>exercise1.FactorialTable</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise1</servlet-name>
+        <url-pattern>/exercise1</url-pattern>
+    </servlet-mapping>
 </web-app>
