@@ -46,4 +46,13 @@
         <servlet-name>exercise2</servlet-name>
         <url-pattern>/exercise2</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise3</servlet-name>
+        <servlet-class>exercise3.VisitCount</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise3</servlet-name>
+        <url-pattern>/exercise3</url-pattern>
+    </servlet-mapping>
 </web-app>
