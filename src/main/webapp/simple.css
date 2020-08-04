@@ -6,3 +6,7 @@ th, tfoot, thead {
     background-color: #333;
     color: #fff;
 }
+
+body{
+    background-color: bisque;
+}
