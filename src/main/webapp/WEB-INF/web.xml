@@ -55,4 +55,14 @@
         <servlet-name>exercise3</servlet-name>
         <url-pattern>/exercise3</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise5</servlet-name>
+        <servlet-class>exercise5.WebLoanCalculator</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>exercise5</servlet-name>
+        <url-pattern>/exercise5/result</url-pattern>
+    </servlet-mapping>
 </web-app>
