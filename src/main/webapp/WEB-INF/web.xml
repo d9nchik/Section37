@@ -74,4 +74,13 @@
         <servlet-name>exercise5</servlet-name>
         <url-pattern>/exercise5/result</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise11</servlet-name>
+        <servlet-class>exercise11.CookieGetter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise11</servlet-name>
+        <url-pattern>/exercise11</url-pattern>
+    </servlet-mapping>
 </web-app>
