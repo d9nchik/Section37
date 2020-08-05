@@ -103,8 +103,9 @@ public class PasswordChanger extends HttpServlet {
         try {
             updateUser.setString(2, login);
             updateUser.setString(1, password);
-            getUser.executeUpdate();
+            updateUser.executeUpdate();
         } catch (SQLException throwables) {
+            throwables.printStackTrace();
             return false;
         }
         return true;
