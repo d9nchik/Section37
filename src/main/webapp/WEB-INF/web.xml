@@ -83,4 +83,13 @@
         <servlet-name>exercise11</servlet-name>
         <url-pattern>/exercise11</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise8</servlet-name>
+        <servlet-class>exercise8.PasswordChanger</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise8</servlet-name>
+        <url-pattern>/exercise8</url-pattern>
+    </servlet-mapping>
 </web-app>
