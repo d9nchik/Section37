@@ -27,7 +27,7 @@ public class PasswordChanger extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try (PrintWriter out = resp.getWriter()) {
-            if (!req.getParameter("newPass").equals(req.getParameter("oldPass"))) {
+            if (!req.getParameter("newPass").equals(req.getParameter("retypePass"))) {
                 generateForm(out, "New password is invalid in retype field");
             } else if (!userExist(req.getParameter("name"), req.getParameter("oldPass"))) {
                 generateForm(out, "User doesn't exist");
@@ -52,11 +52,12 @@ public class PasswordChanger extends HttpServlet {
 
     public PasswordChanger() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/javaBook", "scott",
-                    "&x8R#Bp9");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/javaBook?serverTimezone=UTC",
+                    "scott", "&x8R#Bp9");
             getUser = connection.prepareStatement("SELECT password FROM userCredentials WHERE login=? and password=?");
             updateUser = connection.prepareStatement("UPDATE userCredentials SET password=? WHERE login=?");
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
     }
@@ -73,7 +74,7 @@ public class PasswordChanger extends HttpServlet {
         if (!specialMSG.isEmpty()) {
             out.println("<p>" + specialMSG + "</p>");
         }
-        out.println("<form method=\"post\" action=\"/exercise8/result\">\n" +
+        out.println("<form method=\"post\" action=\"/exercise8\">\n" +
                 "    <label>Username:<input name=\"name\" type=\"text\" required></label><br>\n" +
                 "    <label>Old Password:<input name=\"oldPass\" type=\"password\" required></label><br>\n" +
                 "    <label>New Password:<input type=\"password\" name=\"newPass\" required></label><br>\n" +
