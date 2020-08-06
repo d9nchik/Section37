@@ -92,4 +92,14 @@
         <servlet-name>exercise8</servlet-name>
         <url-pattern>/exercise8</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exercise14</servlet-name>
+        <servlet-class>exercise14.OpinionPoll</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>exercise14</servlet-name>
+        <url-pattern>/exercise14/result</url-pattern>
+    </servlet-mapping>
 </web-app>
