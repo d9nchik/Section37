@@ -24,7 +24,7 @@ public class OpinionPoll extends HttpServlet {
             else
                 noVote++;
             lock.unlock();
-            update();
+            new Thread(this::update).start();
             out.println("<!DOCTYPE html>");
             out.println("<head lang=\"en\">");
             out.println("<meta charset=\"UTF-8\">");
