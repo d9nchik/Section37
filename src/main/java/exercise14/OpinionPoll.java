@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class OpinionPoll extends HttpServlet {
-    private PreparedStatement getUser;
-    private PreparedStatement updateUser;
+    private int yesVote;
+    private int noVote;
+    private PreparedStatement updateStatement;
 
 
     @Override
@@ -27,13 +25,6 @@ public class OpinionPoll extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try (PrintWriter out = resp.getWriter()) {
-            if (!req.getParameter("newPass").equals(req.getParameter("retypePass"))) {
-                generateForm(out, "New password is invalid in retype field");
-            } else if (!userExist(req.getParameter("name"), req.getParameter("oldPass"))) {
-                generateForm(out, "User doesn't exist");
-            } else if (!update(req.getParameter("name"), req.getParameter("newPass"))) {
-                generateForm(out, "Server error(");
-            } else {
                 out.println("<!DOCTYPE html>");
                 out.println("<head lang=\"en\">");
                 out.println("<meta charset=\"UTF-8\">");
@@ -44,7 +35,6 @@ public class OpinionPoll extends HttpServlet {
                 out.println("<h1>Password successfully changed!</h1>");
                 out.println("</body>");
                 out.println("</html>");
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,8 +45,12 @@ public class OpinionPoll extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/javaBook?serverTimezone=UTC",
                     "scott", "&x8R#Bp9");
-            getUser = connection.prepareStatement("SELECT password FROM userCredentials WHERE login=? and password=?");
-            updateUser = connection.prepareStatement("UPDATE userCredentials SET password=? WHERE login=?");
+            ResultSet result = connection.createStatement()
+                    .executeQuery("SELECT  yesCount, noCount FROM javaBook.Poll WHERE question='Are you a CS major? '");
+            yesVote = result.getInt(1);
+            noVote = result.getInt(2);
+            updateStatement = connection.prepareStatement("UPDATE javaBook.Poll SET yesCount=?," +
+                    " noCount=? WHERE question='Are you a CS major? '");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -89,21 +83,11 @@ public class OpinionPoll extends HttpServlet {
         generateForm(out, "");
     }
 
-    synchronized private boolean userExist(String login, String password) {
-        try {
-            getUser.setString(1, login);
-            getUser.setString(2, password);
-            return getUser.executeQuery().next();
-        } catch (SQLException throwables) {
-            return false;
-        }
-    }
-
     synchronized private boolean update(String login, String password) {
         try {
-            updateUser.setString(2, login);
-            updateUser.setString(1, password);
-            updateUser.executeUpdate();
+            updateStatement.setString(2, login);
+            updateStatement.setString(1, password);
+            updateStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
